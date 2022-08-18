@@ -1,0 +1,16 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMServiceScrape
+metadata:
+  name: pushgateway-scrape
+  namespace: victoria-metrics
+spec:
+  endpoints:
+    - scheme: http
+      port: metrics
+      scrape_interval: 30s
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: prometheus-pushgateway
+  namespaceSelector:
+    matchNames:
+      - victoria-metrics

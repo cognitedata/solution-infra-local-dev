@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dev-services
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/cognitedata/solution-infra-local-dev.git
+      revision: HEAD
+      directories:
+      - path: 3-k8-setup-core/*
+      - path: 4-k8-setup-extended/*
+  template:
+    metadata:
+      name: '{{path.basenameNormalized}}'
+    spec:
+      project: system
+      source:
+        repoURL: https://github.com/cognitedata/solution-infra-local-dev.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+#        namespace: '{{path.basenameNormalized}}'
+      syncPolicy:
+        automated:
+          prune: true
+          allowEmpty: true

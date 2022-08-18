@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: grafana-operator-system
+
+resources:
+- github.com/grafana-operator/grafana-operator/deploy/manifests
+- grafana-main.grafana.yaml
+- grafana-main-mapping.yaml
+- victoria-metrics.grafanadatasource.yaml
+- victoria-metrics.grafanadashboard.yaml 
+- vm-agent.grafanadashboard.yaml 
+- kubernetes.grafanadashboard.yaml
+
+patches:
+- path: grafana-operator-overrides.yaml

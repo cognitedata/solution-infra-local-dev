@@ -1,0 +1,15 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Host
+metadata:
+  name: localhost-all
+  namespace: emissary
+spec:
+  hostname: '*'
+  #tlsSecret:
+  #  name: localhost-tls
+  #tls:
+  #  alpn_protocols: h2, http/1.1
+  requestPolicy:
+    insecure:
+      action: Route        # Will route http. Other option is "Redirect" which will http -> https
+      additionalPort: -1

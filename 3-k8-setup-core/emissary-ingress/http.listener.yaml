@@ -1,0 +1,14 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Listener
+metadata:
+  name: listener-8080
+  namespace: emissary
+spec:
+  port: 8080                     # int32, port number on which to listen
+  protocol: HTTPS                # HTTP, HTTPS, HTTPPROXY, HTTPSPROXY, TCP
+  securityModel: XFP             # XFP (for X-Forwarded-Proto), SECURE, INSECURE
+  statsPrefix: listener-8080  # default depends on protocol; see below
+  l7Depth: 0                     # int32
+  hostBinding: 
+    namespace:
+      from: SELF                 # SELF, ALL

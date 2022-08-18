@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: system
+  namespace: argocd
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # Project description
+  description: Project hosting the default dev services.
+
+  # Allow manifests to deploy from any Git repos
+  sourceRepos:
+  - '*'
+
+  # Permit applications to deploy to any namespace in the same cluster
+  destinations:
+  - namespace: '*'
+    server: https://kubernetes.default.svc
+
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+
+  # Deny all namespaced-scoped resources from being created, except for Deployment and StatefulSet
+  #namespaceResourceWhitelist:
+  #- group: 'apps'
+  #  kind: Deployment
+  #- group: 'apps'
+  #  kind: StatefulSet
+
+  # Enables namespace orphaned resource monitoring.
+  orphanedResources:
+    warn: false

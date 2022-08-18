@@ -1,0 +1,9 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: grafana-main
+  namespace: grafana-operator-system
+spec:
+  hostname: grafana.localhost
+  prefix: /
+  service: grafana-main:3000

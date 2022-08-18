@@ -1,0 +1,13 @@
+# Repository credentials, for using the same credentials in multiple repositories.
+# Generate a personal dev token and paste it into the password field.
+apiVersion: v1
+kind: Secret
+metadata:
+  name: argoproj-https-creds-github-cognitedata
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repo-creds
+stringData:
+  url: https://github.com/cognitedata
+  password: insert-your-github-token-here
+  username: any-username-will-do

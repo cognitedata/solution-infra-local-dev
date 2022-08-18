@@ -1,0 +1,10 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: argo-server-ui
+  namespace: argo
+spec:
+  hostname: argo.localhost
+  prefix: /
+  service: argo-server:2746
+  timeout_ms: 0

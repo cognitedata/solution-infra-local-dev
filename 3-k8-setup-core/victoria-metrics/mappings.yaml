@@ -1,0 +1,17 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: vmsingle
+spec:
+  hostname: 'victoria-metrics.localhost'
+  prefix: /
+  service: http://vmsingle-vmsingle:8429
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: prometheus-pushgateway
+spec:
+  hostname: 'pushgateway.localhost'
+  prefix: /
+  service: http://prometheus-pushgateway:9091
