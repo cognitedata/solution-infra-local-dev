@@ -8,9 +8,9 @@ Running `Argo CD` and the full development services requires 4 - 8 GB RAM and 2 
 
 ## Install Argo CD
 
-Argo CD is installed into your K8s cluster via a single command and a few simple configuration steps. We will install Argo CD into the namespace `argocd` along with the extension "application set controller".
+Argo CD is installed into your K8s cluster via a single command and a few simple configuration steps. We will install Argo CD into the namespace `argocd`.
 ```console
-kubectl apply -k . 
+$ kubectl apply -k . 
 ```
 This command will read the file `kustomization.yaml` and apply the specification/install.
 
@@ -20,14 +20,14 @@ This command will read the file `kustomization.yaml` and apply the specification
 > ```
 > In this case, just re-run:
 > ```console
-> kubectl apply -k .
+> $ kubectl apply -k .
 > ```
 
 Depending on your network bandwidth, the installation may take some time to download all the required artifacts. You can check the status via 
 ```console
-kubectl get deployments -n argocd
+$ kubectl get deployments -n argocd
 
-# Response when not ready--notice the columns "READY" and "AVAILABLE"
+# Response when ArgoCD is not ready--notice the columns "READY" and "AVAILABLE"
 NAME                               READY   UP-TO-DATE   AVAILABLE   AGE
 argocd-applicationset-controller   0/1     1            0           4m53s
 argocd-dex-server                  0/1     1            0           4m53s
@@ -36,7 +36,7 @@ argocd-redis                       0/1     1            0           4m53s
 argocd-repo-server                 0/1     1            0           4m53s
 argocd-server                      0/1     1            0           4m53s
 
-# Response when ready
+# Response when ArgoCD is ready
 NAME                               READY   UP-TO-DATE   AVAILABLE   AGE
 argocd-applicationset-controller   1/1     1            1           32s
 argocd-dex-server                  1/1     1            1           32s
@@ -45,6 +45,29 @@ argocd-redis                       1/1     1            1           32s
 argocd-repo-server                 1/1     1            1           32s
 argocd-server                      1/1     1            1           32s
 ```
+
+After it set up, it will automatically begin to install the development services. This may take 5 - 15 minutes, depending on your network bandwidth. You can monitor the progress of the installation by listing the current namespaces (different services are installed in different namespaces):
+```console
+$ kubectl get ns
+
+# Example response
+NAME                      STATUS   AGE
+argo                      Active   19m
+argo-events               Active   19m
+argocd                    Active   23m
+cert-manager              Active   19m
+default                   Active   26m
+echoserver                Active   19m
+emissary                  Active   22m
+emissary-system           Active   22m
+external-secrets          Active   19m
+grafana-operator-system   Active   19m
+kube-node-lease           Active   26m
+kube-public               Active   26m
+kube-system               Active   26m
+victoria-metrics          Active   19m
+``` 
+Look for the namespace `emissary` and `emissary-system`. When they are active, you can try accessing the ArgoCD GUI.
 
 ## Configure ArgoCD
 
@@ -55,13 +78,13 @@ The first item, is to set a new password for the admin account. Argo is installe
 
 Get the `base64` encoded default password.
 ```console
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}"
+$ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}"
 ```
-which you can then decode using for example [base64decode](https://www.base64decode.org)
+which you can then decode using for example [https://www.base64decode.org](https://www.base64decode.org)
 
 Expose the ArgoCD UI to localhost so you can login and access the Argo functionality. The following command will enable a temporary port forward of the UI to `http://localhost:8080`.
 ```console
-kubectl port-forward svc/argocd-server -n argocd 8080:443
+$ kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```
 
 Login to `http://localhost:8080` with your browser, using the username `admin` and the `base64` decoded default password. Navigate to the `User Info` section ([http://localhost:8080/user-info](http://localhost:8080/user-info)) and update the password.
@@ -72,7 +95,7 @@ ArgoCD need read access to the GitHub repositories so it can read the source man
 - Generate a personal access token. Go to your settings in [GitHub --> settings --> developer settings --> personal access tokens](https://github.com/settings/tokens), and generate a new token.
 - Add this token as the `password` in the `argocd-repo-creds.yaml` and apply it to the `argocd` namespace.
 ```console
-kubectl -n argocd apply -f ./argocd-repo-creds.yaml
+$ kubectl -n argocd apply -f ./argocd-repo-creds.yaml
 ```
 
 ### Add the dev services repository to ArgoCD
@@ -81,7 +104,7 @@ Let's add the dev services repositoy to ArgoCD so that it will be automatically 
 
 During the installation, we set up a `project` (and Argo CD grouping of applications) to host the dev. services. Now we will add an `application set` definition to this `project`. The `application set` configures Argo to monitor the dev services repository and install all the services/applications defined there.
 ```console
-kubectl -n argocd apply -f ./argocd-applicationset.yaml
+$ kubectl -n argocd apply -f ./argocd-applicationset.yaml
 ```
 
 ## What's next
