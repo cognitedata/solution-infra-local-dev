@@ -52,26 +52,26 @@ Skaffold helps orchestate the development workflow for container-based developme
 
 ## Java development
 
-### Java 11
+### Java 17
 
-We currently use Java 11 as our default version. This is version our Java SDK and Beam SDK are based on. Through 2022 we are looking to move to the next `LTS` version, Java 17 (which brings significant syntactic and performance improvements), but we need to verify compatibility with our SDKs first. 
+We currently use Java 17 as our default version. This is compatible with our Java SDK and Beam SDK.
 
 We recommend using the free `Adoptium Temurin` Java version ([https://adoptium.net/](https://adoptium.net/)) which is the rebranded/new version of `OpenJDK`.
 - Windows: On Win11 and new Win10 you can use the `winget` packaged manager:
 ```console
-winget install EclipseAdoptium.Temurin.11
+winget install EclipseAdoptium.Temurin.17
 ```
-Alternatively, download Java 11 SDK "Temurin" from [https://adoptium.net/](https://adoptium.net/).
+Alternatively, download Java 17 SDK "Temurin" from [https://adoptium.net/](https://adoptium.net/).
 - Mac: Install via Homebrew
 ```console
 brew tap homebrew/cask-versions
-brew install --cask temurin11
+brew install --cask temurin17
 ```
 - Linux: Depeding on which flavor (and package manager) you use:
 ```console
-apt-get install temurin-11-jdk
-yum install temurin-11-jdk
-zypper install temurin-11-jdk
+apt-get install temurin-17-jdk
+yum install temurin-17-jdk
+zypper install temurin-17-jdk
 ```
 
 Tip: Remember to set the `JAVA_HOME` environment variable after install.
