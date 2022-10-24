@@ -1,0 +1,7 @@
+# Remove pod security policy--it is removed from k8s 1.25.0
+$patch: delete 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: vm-operator-psp-rolebinding
+  
