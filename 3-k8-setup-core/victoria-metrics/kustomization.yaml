@@ -13,6 +13,11 @@ resources:
 - ca-node-scrape.vmnodescrape.yaml
 - node-scrape.vmnodescrape.yaml
 
+patchesStrategicMerge:
+  - delete-psp-clusterrole.patch.yaml
+  - delete-psp-clusterrolebinding.patch.yaml
+  - delete-psp.patch.yaml 
+
 images:
 - name: victoriametrics/operator
   newTag: v0.28.5
