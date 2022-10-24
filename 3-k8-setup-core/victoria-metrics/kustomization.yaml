@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: victoria-metrics
 
 resources:
-- victoria-metrics.namespace.yaml
 - github.com/VictoriaMetrics/operator/config/default?ref=v0.28.5
 - vmsingle.yaml
 - vmagent.yaml
@@ -15,8 +14,8 @@ resources:
 - node-scrape.vmnodescrape.yaml
 
 patchesStrategicMerge:
-  - delete-psp-clsuterrole.patch.yaml
-  - delete-psp-clsuterrolebinding.patch.yaml
+  - delete-psp-clusterrole.patch.yaml
+  - delete-psp-clusterrolebinding.patch.yaml
   - delete-psp.patch.yaml 
 
 images:
