@@ -8,6 +8,8 @@ resources:
 - localhost-all.host.yaml
 - http.listener.yaml
 
-patches:
-- path: emissary-ingress-overrides.yaml
-- path: emissary-apiext-overrides.yaml
+replicas:
+  - name: emissary-apiext
+    count: 1
+  - name: emissary-ingress
+    count: 1
