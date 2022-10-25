@@ -3,7 +3,8 @@ kind: VMSingle
 metadata:
   name: vmsingle
 spec:
-  image: "victoriametrics/victoria-metrics:v1.82.1"
+  image: 
+    tag: "v1.82.1"
   retentionPeriod: "1"
   removePvcAfterDelete: true
   storage:
