@@ -3,6 +3,7 @@ kind: VMAgent
 metadata:
   name: vmagent
 spec:
+  image: "victoriametrics/vmagent:v1.82.1"
   selectAllByDefault: true
   replicaCount: 1
   remoteWrite:
