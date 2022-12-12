@@ -4,7 +4,7 @@ metadata:
   name: vmagent
 spec:
   image: 
-    tag: "v1.82.1"
+    tag: "v1.85.0"
   selectAllByDefault: true
   replicaCount: 1
   remoteWrite:
