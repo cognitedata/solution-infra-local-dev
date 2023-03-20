@@ -12,13 +12,13 @@ You can manually install all services via `./.install-all-services` kustomizatio
 
 Navigate to the folder `./.install-all-services` and run the following command:
 ```console
-$ kubectl apply -k .
+$ kubectl kustomize --enable-helm . | kubectl apply -f -
 ```
 > The installation may report errors on the first run. In that case just re-run the install command.
 
 In order to uninstall the services, run:
 ```console
-$ kubectl delete -k .
+$ kubectl kustomize --enable-helm . | kubectl delete -f -
 ```
 
 ### Manual install of single services
@@ -50,3 +50,9 @@ You can access Argo Workflows at [https://argo.localhost](https://argo.localhost
 ### Argo Events
 
 Argo Events [https://argoproj.github.io/argo-events/](https://argoproj.github.io/argo-events/) is the eventing sibling to `Argo Workflows`. It is an event-driven framework for Kubernetes that enables you to trigger workflows, serverless functions, etc. from a variety of event sources.
+
+### External Secrets
+
+[External secrets](./external-secrets-operator/README.md) bridges specialized secrets' stores (`GCP Secret Manager`, `AWS Secrets Manager`, `Azure Key Vault`, etc.) and K8s generic `secret` concept. This allows you to write your code without relating to the specialized secrets stores and just use the generic K8s concepts instead; i.e. read secrets via mounted environment variables or config files.
+
+`External secrets` must be configured to read secrets from the secrets' store you are using. A configuration guide and templates are described at [./external-secrets-operator/README.md](./external-secrets-operator/README.md).
