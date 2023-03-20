@@ -6,4 +6,3 @@ resources:
 - ../echoserver
 - ../victoria-metrics
 - ../grafana-operator
-- ../external-secrets-operator
