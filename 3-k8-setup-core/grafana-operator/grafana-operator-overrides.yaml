@@ -4,9 +4,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
    name: controller-manager
-   namespace: system
-   labels:
-    control-plane: controller-manager
 spec:
   template:
     spec:
@@ -15,5 +12,5 @@ spec:
           args:
             - --health-probe-bind-address=:8081             # existing arg from deployment
             - --metrics-bind-address=127.0.0.1:8080         # existing arg from deployment
-            - --zap-log-level=error                         # existing arg from deployment
+            - --leader-elect                                # existing arg from deployment
             - --grafana-image-tag=latest                    # set default Grafana version to "latest"

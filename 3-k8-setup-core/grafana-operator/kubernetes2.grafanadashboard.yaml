@@ -1,11 +1,11 @@
 apiVersion: integreatly.org/v1alpha1
 kind: GrafanaDashboard
 metadata:
-  name: kubernetes
+  name: kubernetes2
   labels:
     app: grafana
 spec:
   grafanaCom:
-    id: 10000
+    id: 12740
     revision: 1
   json: ""

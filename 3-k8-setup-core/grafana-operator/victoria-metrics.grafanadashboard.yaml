@@ -3,9 +3,12 @@ kind: GrafanaDashboard
 metadata:
   name: victoria-metrics
   labels:
-    app: grafana
+    app.kubernetes.io/name: grafana-main
 spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
   grafanaCom:
     id: 10229
-    revision: 23
+    revision: 28
   json: ""
