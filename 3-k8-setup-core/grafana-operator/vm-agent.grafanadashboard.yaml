@@ -3,9 +3,12 @@ kind: GrafanaDashboard
 metadata:
   name: vm-agent
   labels:
-    app: grafana
+    app.kubernetes.io/name: grafana-main
 spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
   grafanaCom:
     id: 12683
-    revision: 9
+    revision: 11
   json: ""
