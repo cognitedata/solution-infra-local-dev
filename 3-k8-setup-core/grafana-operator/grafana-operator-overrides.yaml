@@ -3,7 +3,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-   name: controller-manager
+   name: grafana-operator-controller-manager
+   #namespace: default
 spec:
   template:
     spec:
