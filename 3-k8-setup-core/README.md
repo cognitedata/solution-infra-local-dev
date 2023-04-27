@@ -10,7 +10,7 @@ You can manually install all services via `./.install-all-services` kustomizatio
 
 Navigate to the folder `./.install-all-services` and run the following command:
 ```console
-$ kubectl apply -k .
+$ kubectl apply --server-side -k .
 ```
 > The installation may report errors on the first run. In that case just re-run the install command.
 
@@ -29,7 +29,7 @@ $ cd ./victoria-metrics
 
 2) Run `kubectl apply -k .` to install the service/module.
 ```console
-$ kubectl apply -k .
+$ kubectl apply --server-side -k .
 ```
 
 3) In order to uninstall/delete the service, run `kubectl delete -k .`
