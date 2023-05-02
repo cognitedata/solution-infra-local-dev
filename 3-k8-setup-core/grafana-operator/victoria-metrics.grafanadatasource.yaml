@@ -1,17 +1,18 @@
-apiVersion: integreatly.org/v1beta1
-kind: GrafanaDataSource
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
 metadata:
   name: victoria-metrics-datasource
 spec:
-  name: middleware.yaml
-  datasources:
-    - name: Prometheus
-      type: prometheus
-      access: proxy
-      url: http://vmsingle-vmsingle.victoria-metrics:8429
-      isDefault: true
-      version: 1
-      editable: true
-      jsonData:
-        tlsSkipVerify: true
-        timeInterval: "5s"
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  datasource:
+    name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://vmsingle-vmsingle.victoria-metrics:8429
+    isDefault: true
+    editable: true
+    jsonData:
+      tlsSkipVerify: true
+      timeInterval: "5s"
