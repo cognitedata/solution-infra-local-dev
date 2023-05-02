@@ -6,4 +6,4 @@ metadata:
 spec:
   hostname: grafana.localhost
   prefix: /
-  service: grafana-main:3000
+  service: grafana-main-service:3000
