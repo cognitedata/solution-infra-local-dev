@@ -12,6 +12,7 @@ resources:
 - vm-agent.grafanadashboard.yaml 
 - kubernetes.grafanadashboard.yaml
 - kubernetes2.grafanadashboard.yaml
+- kubernetes-global-view.grafanadashboard.yaml
 
 images:
 - name: ghcr.io/grafana-operator/grafana-operator
