@@ -1,14 +1,17 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: kubernetes2
+  name: kubernetes-cluster-overview
   labels:
     app: grafana
 spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
+  datasources: 
+    - datasourceName: Prometheus
+      inputName: "PBFA97CFB590B2093"
   grafanaCom:
-    id: 12740
-    revision: 1
+    id: 18629
+    revision: 3
   json: ""
