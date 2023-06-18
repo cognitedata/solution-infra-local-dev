@@ -7,4 +7,5 @@ resources:
 - argocd-project.yaml
 - argocd-dev-services.applicationset.yaml
 patchesStrategicMerge:
-- argocd-overrides.yaml
+- argocd-cm-overrides.configmap.yaml
+- argocd-cmd-params-cm-overrides.configmap.yaml
