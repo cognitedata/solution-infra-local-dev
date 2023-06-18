@@ -1,0 +1,9 @@
+# Disable tls
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cmd-params-cm
+data:
+  ## Server properties
+  # Run server without TLS
+  server.insecure: "true"
