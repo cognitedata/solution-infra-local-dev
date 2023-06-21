@@ -1,7 +1,9 @@
 # Enable kustomize + helm
+# Optimize tracking method
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-cm
 data:
   kustomize.buildOptions: --load-restrictor LoadRestrictionsNone --enable-helm
+  application.resourceTrackingMethod: "annotation+label"
