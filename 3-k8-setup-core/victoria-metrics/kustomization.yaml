@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: victoria-metrics
 
 resources:
-- github.com/VictoriaMetrics/operator/config/default?ref=v0.34.1
+- github.com/VictoriaMetrics/operator/config/default?ref=v0.42.3
 - vmsingle.yaml
 - vmagent.yaml
 - mappings.yaml
@@ -15,4 +15,4 @@ resources:
 
 images:
 - name: victoriametrics/operator
-  newTag: v0.34.1
+  newTag: v0.42.3
